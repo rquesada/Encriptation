@@ -139,6 +139,61 @@ The output will be the SHA-256 hash value, represented as a 64-character hexadec
 `80a8e652c7c56a7b9928ff2e89f90b156890c7908e6d00830bfeea4006e705a2`
 
 ## Public-key cryptography
+Public-key cryptography, also known as asymmetric cryptography, is a cryptographic system that uses pairs of keys: public keys and private keys.
+
+#### How public-key cryptography works:
+##### Key Pair Generation:
+Users generate a pair of mathematically related keys: a public key and a private key. These keys are typically very large prime numbers
+
+##### Public Key Distribution: 
+The public key is shared openly and can be distributed widely. It is used to encrypt messages or data.
+
+##### Private Key Protection
+The private key is kept secret and should only be known to the owner. It is used for decrypting messages or data that were encrypted with the corresponding public key.
+
+##### Encryption: 
+If User A wants to send a secure message to User B, User A will use User B's public key to encrypt the message. Once encrypted, only User B, who possesses the corresponding private key, can decrypt and access the original message.
+
+##### Decryption: 
+User B uses their private key to decrypt the message that was encrypted with their public key. Since the private key is kept secret, only User B can decrypt the message.
+
+##### Digital Signatures:
+Public-key cryptography is also used for digital signatures. If User A wants to sign a message to prove its authenticity, they can use their private key to create a digital signature. Anyone with User A's public key can verify that the signature is valid, ensuring the message has not been tampered with and is indeed from User A
+
+#### RSA:
+The RSA algorithm is a widely used public-key cryptosystem that enables secure data transmission and digital signatures. It was introduced in 1977 by Ron Rivest, Adi Shamir, and Leonard Adleman—hence the name RSA. The algorithm is based on the mathematical properties of large prime numbers.
+The security of RSA is based on the difficulty of factoring the product of two large prime numbers into its prime factors.
+RSA is widely used for secure communication, digital signatures, and key exchange in various applications such as SSL/TLS for secure web browsing, PGP for email encryption, and more.
+
+##### Example:
+Below is a basic example demonstrating how to generate RSA key pairs, encrypt and decrypt a message using OpenSSL
+
+###### Step 1: Generate RSA Key Pair
+This will create two files: private_key.pem (containing the private key) and public_key.pem (containing the public key).
+```
+# Generate a private key
+openssl genpkey -algorithm RSA -out private_key.pem
+
+# Derive the corresponding public key from the private key
+openssl rsa -pubout -in private_key.pem -out public_key.pem
+```
+
+###### Step 2: Encrypt a Message
+This will create a binary file (encrypted_message.bin) containing the encrypted message.
+```
+# Message to be encrypted
+echo "Hello, RSA!" > message.txt
+
+# Encrypt the message using the recipient's public key
+openssl rsautl -encrypt -pubin -inkey public_key.pem -in message.txt -out encrypted_message.bin
+```
+
+###### Step 3: Decrypt the Message
+This will decrypt the message and store it in decrypted_message.txt.
+```
+# Decrypt the message using the recipient's private key
+openssl rsautl -decrypt -inkey private_key.pem -in encrypted_message.bin -out decrypted_message.txt
+```
 
 ## Digital signature
 
