@@ -195,12 +195,36 @@ This will decrypt the message and store it in decrypted_message.txt.
 openssl rsautl -decrypt -inkey private_key.pem -in encrypted_message.bin -out decrypted_message.txt
 ```
 
-## Digital signature
+## Public Key Infraestructure
+Public Key Infrastructure (PKI) is a comprehensive system that manages the creation, distribution, storage, and revocation of digital keys and certificates. It provides a framework for secure communication and authentication over a network, typically the internet. PKI relies on the use of asymmetric cryptography, where users have a pair of public and private keys.
 
-## PKI
+### Here are key components and concepts associated with Public Key Infrastructure:
+#### Certificate Authority (CA)
+The Certificate Authority is a trusted entity responsible for issuing digital certificates. These certificates bind public keys to individuals, devices, or services. The CA verifies the identity of the entity requesting a certificate before issuance.
 
-## TLS
+#### Digital Certificates
+A digital certificate is a cryptographic key pair, consisting of a public key and its associated private key. The certificate is digitally signed by the CA, providing a means for others to verify the authenticity of the public key.
 
-## Cryptocurrency
+#### Registration Authority (RA)
+The Registration Authority is responsible for authenticating users before a digital certificate is issued by the CA. In some systems, the roles of the CA and RA are performed by the same entity.
 
-## Blockchain
+#### Public and Private Keys
+CRLs are lists maintained by the CA that contain information about revoked certificates. Clients can check these lists to ensure that a certificate has not been compromised or revoked.
+
+#### Certificate Revocation Lists (CRLs)
+PKI can operate under different trust models, including hierarchical, mesh, and hybrid models. In a hierarchical model, a root CA issues certificates to subordinate CAs, creating a chain of trust. In a mesh model, peers trust each other's public keys directly.
+
+#### Public Key Infrastructure Trust Models
+PKI is extensively used in SSL/TLS protocols for securing communication over the web. Web browsers use digital certificates to authenticate the identity of websites and establish secure connections.
+
+#### Secure Sockets Layer/Transport Layer Security (SSL/TLS)
+PKI is extensively used in SSL/TLS protocols for securing communication over the web. Web browsers use digital certificates to authenticate the identity of websites and establish secure connections.
+
+#### Key Management
+Proper key management is crucial in PKI. This includes secure generation, storage, and disposal of keys. Hardware Security Modules (HSMs) are often used to enhance key security.
+
+PKI plays a fundamental role in securing various online activities, including e-commerce transactions, email communication (S/MIME), and virtual private networks (VPNs). It establishes a framework for trustworthy and secure communication by leveraging the principles of asymmetric cryptography and the binding of public keys to verified identities through digital certificates.
+
+## Transport Layer Security
+
+## Bitcoin and Blockchain
